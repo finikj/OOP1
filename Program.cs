@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
@@ -6,29 +7,28 @@ namespace ConsoleApp1
     {
         private static void Main()
         {
-            List<Animal> animals = new List<Animal>();
+            Ecosystem<EcosystemEntity> ecosystem = new Ecosystem<EcosystemEntity>();
 
-            animals.Add(new Mammal("Рекс", "собака", 4));
-            animals.Add(new Bird("Кеша", "попугай", 0.5));
-            animals.Add(new Fish("Немо", "рыба", "морская"));
+            ecosystem.AddEntity(new Predator("волк", 9));
+            ecosystem.AddEntity(new Herbivore("олень", 14));
+            ecosystem.AddEntity(new Plant("трава"));
 
-            Console.WriteLine("Print():");
-            foreach (Animal animal in animals)
+            Console.WriteLine("SimulateInteractions():");
+            ecosystem.SimulateInteractions();
+
+            Console.WriteLine("FindByName():");
+            EcosystemEntity? foundEntity = ecosystem.FindByName("волк");
+
+            if (foundEntity != null)
             {
-                animal.Print();
+                foundEntity.Print();
+            }
+            else
+            {
+                Console.WriteLine("сущность не найдена");
             }
 
-            Console.WriteLine("MakeSound():");
-            foreach (Animal animal in animals)
-            {
-                animal.MakeSound();
-            }
-
-            Console.WriteLine("Move():");
-            foreach (Animal animal in animals)
-            {
-                animal.Move();
-            }
+            Console.WriteLine($"всего сущностей: {Ecosystem<EcosystemEntity>.EntitiesCount}");
         }
     }
 }

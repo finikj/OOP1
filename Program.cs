@@ -1,20 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using ConsoleApp1;
 
-Mammal mammal = new Mammal("Бобик", "пес", 4, 12, 2, "яблоки");
+namespace ConsoleApp1
+{
+    internal class Program
+    {
+        private static void Main()
+        {
+            List<Animal> animals = new List<Animal>();
 
-Console.WriteLine("Print():");
-mammal.Print();
+            animals.Add(new Mammal("Рекс", "собака", 4));
+            animals.Add(new Bird("Кеша", "попугай", 0.5));
+            animals.Add(new Fish("Немо", "рыба", "морская"));
 
-Console.WriteLine("Feed():");
-mammal.Feed();
+            Console.WriteLine("Print():");
+            foreach (Animal animal in animals)
+            {
+                animal.Print();
+            }
 
-Console.WriteLine("Osmotr():");    
-mammal.Osmotr();
+            Console.WriteLine("MakeSound():");
+            foreach (Animal animal in animals)
+            {
+                animal.MakeSound();
+            }
 
-Console.WriteLine("Rodit():");
-mammal.Rodit(3);
-
-Console.WriteLine("Print():");
-mammal.Print();
+            Console.WriteLine("Move():");
+            foreach (Animal animal in animals)
+            {
+                animal.Move();
+            }
+        }
+    }
+}
